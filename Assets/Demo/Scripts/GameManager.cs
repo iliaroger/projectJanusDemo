@@ -45,12 +45,21 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         ToggleMenu();
+        QuitDemo();
         SelectSpawnPoint();
     }
 
     private void FixedUpdate()
     {
         
+    }
+
+    private void QuitDemo()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void ToggleMenu()
