@@ -57,10 +57,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Controller\DemoScene\MiscScripts\Doors.cs" />
+    <Compile Include="Assets\Demo\Plugin\Accessibility.cs" />
     <Compile Include="Assets\Controller\FirstPersonAIO\FirstPersonAIO.cs" />
     <Compile Include="Assets\Demo\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Skybox\AllSkyFree_Menu.cs" />
-    <Compile Include="Assets\Demo\Plugin\Accessibility.cs" />
+    <Compile Include="Assets\Demo\Plugin\ProtanopiaFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\DeuteranopiaFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\TritanopiaFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\DyslexiaFontFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\FontSizeFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\TextSpacingFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\BigCursorFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\TooltipsFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\DesaturateFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\InvertSpectrumFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\ReadingGuideFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\DisableEffectsFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\TagScripts\Friendly.cs" />
+    <Compile Include="Assets\Demo\Plugin\TagScripts\Foe.cs" />
+    <Compile Include="Assets\Demo\Plugin\TagScripts\Highlight.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -71,7 +85,6 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-     <None Include="Assets\Skybox\AllSkyFree_Readme.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
