@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Diagnostics;
+using System.Threading;
 
 public class ProtanopiaFeature : MonoBehaviour
 {
@@ -62,16 +64,59 @@ public class ProtanopiaFeature : MonoBehaviour
     {
         // create a dictionary and save unique instance id and color
         Object[] _allGameObjects = FindObjectsOfType<GameObject>();
-        List<Object[]> _storedObjects = new List<Object[]>();
-
+        List<Object> _storedObjects = new List<Object>();
+        string[] _filterComponents = { "Meter", "StaminaPower", "AutoCrosshair", "[Debug Updater]", "Protanopia", "Deuteranopia", "Tritanopia", "Fonts", "Effects" };
+        Stopwatch _calc = new Stopwatch();
+        _calc.Start();
         foreach (GameObject obj in _allGameObjects)
         {
-            FirstPersonAIO _hasAIOScript = obj.GetComponent<FirstPersonAIO>();
-            if (_hasAIOScript != null)
+            FirstPersonAIO _hasControllerScript = obj?.GetComponent<FirstPersonAIO>();
+            MeshRenderer _hasMeshRenderer = obj?.GetComponent<MeshRenderer>();
+            if (_hasControllerScript == null)
             {
-                
+                if (_hasMeshRenderer != null)
+                {
+                    bool _foundInstance = false;
+                    for (int i = 0; i < _filterComponents.Length; i++)
+                    {
+                        if (obj.name == _filterComponents[i])
+                        {
+                            _foundInstance = true;
+                        }
+                        else _foundInstance = false;
+                    }
+                    if (_foundInstance)
+                    {
+                        _storedObjects.Add(obj);
+                    }
+                }
             }
         }
+
+        foreach (GameObject obj in _storedObjects)
+        {
+            try
+            {
+                Renderer _objRenderer = obj?.GetComponent<Renderer>();
+
+                if (_objRenderer != null)
+                {
+                    _objRenderer.material.color = new Color(0, _objRenderer.material.color.g, _objRenderer.material.color.b);
+                }
+            }
+            catch
+            {
+                throw new System.Exception("couldnt fetch component from gameobject");
+            }
+            
+        }
+        _calc.Stop();
+        
+        string elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            _calc.Elapsed.Hours, _calc.Elapsed.Minutes, _calc.Elapsed.Seconds,
+            _calc.Elapsed.Milliseconds / 10);
+
+        UnityEngine.Debug.Log(elapsedTime);
     }
 
     private void ResetObjectColor()
