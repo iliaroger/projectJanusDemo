@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Diagnostics;
-using System.Threading;
 
 public class ProtanopiaFeature : MonoBehaviour
 {
@@ -35,64 +34,57 @@ public class ProtanopiaFeature : MonoBehaviour
     // dictionary objects
 
     private IDictionary<int, Color> _initObjectsData = new Dictionary<int, Color>();
+    private List<Object> _storedObjects = new List<Object>();
+    private Dictionary<int, float> _storedColorValues = new Dictionary<int, float>();
 
     // protanopia + custom sliders
     private void Preset1()
     {
         // preset 3 
-        Foe[] _foeSubjects = FindObjectsOfType(typeof(Foe)) as Foe[];
-        foreach (Foe foeSubject in _foeSubjects)
-        {
-            Renderer _foeRenderer = foeSubject.GetComponent<Renderer>();
-            _foeRenderer.material.color = new Color(0, _foeRenderer.material.color.g, _foeRenderer.material.color.b);
-        }
-
-        SaveObjectColor();
-
-        //MeshRenderer[] _allObjects = FindObjectsOfType(typeof(MeshRenderer)) as MeshRenderer[];
-
-        //foreach (MeshRenderer gameObject in _allObjects)
+        //Foe[] _foeSubjects = FindObjectsOfType(typeof(Foe)) as Foe[];
+        //foreach (Foe foeSubject in _foeSubjects)
         //{
-        //    Renderer _shader = gameObject.GetComponent<Renderer>();
-        //    Debug.Log(_shader.material.name);
+        //    Renderer _foeRenderer = foeSubject.GetComponent<Renderer>();
+        //    _foeRenderer.material.color = new Color(0, _foeRenderer.material.color.g, _foeRenderer.material.color.b);
         //}
 
-
+        SaveObjectColor();
+        ProtanopiaActive = true;
     }
 
     private void SaveObjectColor()
     {
         // create a dictionary and save unique instance id and color
         Object[] _allGameObjects = FindObjectsOfType<GameObject>();
-        List<Object> _storedObjects = new List<Object>();
-        string[] _filterComponents = { "Meter", "StaminaPower", "AutoCrosshair", "[Debug Updater]", "Protanopia", "Deuteranopia", "Tritanopia", "Fonts", "Effects" };
         Stopwatch _calc = new Stopwatch();
         _calc.Start();
         foreach (GameObject obj in _allGameObjects)
         {
             FirstPersonAIO _hasControllerScript = obj?.GetComponent<FirstPersonAIO>();
             MeshRenderer _hasMeshRenderer = obj?.GetComponent<MeshRenderer>();
+            Ignore _hasIgnoreComponent = obj?.GetComponent<Ignore>();
             if (_hasControllerScript == null)
             {
-                if (_hasMeshRenderer != null)
+                if (_hasMeshRenderer != null && _hasIgnoreComponent == null)
                 {
-                    bool _foundInstance = false;
-                    for (int i = 0; i < _filterComponents.Length; i++)
-                    {
-                        if (obj.name == _filterComponents[i])
-                        {
-                            _foundInstance = true;
-                        }
-                        else _foundInstance = false;
-                    }
-                    if (_foundInstance)
-                    {
-                        _storedObjects.Add(obj);
-                    }
+                    Renderer _checkColor = obj?.GetComponent<Renderer>();
+                    _storedObjects.Add(obj);
+                    _storedColorValues.Add(obj.GetInstanceID(), _checkColor.material.color.r);
                 }
             }
         }
+        ApplyProtanopia();
+        _calc.Stop();
+        
+        string elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            _calc.Elapsed.Hours, _calc.Elapsed.Minutes, _calc.Elapsed.Seconds,
+            _calc.Elapsed.Milliseconds / 10);
 
+        UnityEngine.Debug.Log(elapsedTime);
+    }
+
+    private void ApplyProtanopia()
+    {
         foreach (GameObject obj in _storedObjects)
         {
             try
@@ -108,24 +100,28 @@ public class ProtanopiaFeature : MonoBehaviour
             {
                 throw new System.Exception("couldnt fetch component from gameobject");
             }
-            
         }
-        _calc.Stop();
-        
-        string elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            _calc.Elapsed.Hours, _calc.Elapsed.Minutes, _calc.Elapsed.Seconds,
-            _calc.Elapsed.Milliseconds / 10);
-
-        UnityEngine.Debug.Log(elapsedTime);
     }
 
-    private void ResetObjectColor()
+    private void ResetProtanopia()
     {
+        foreach (GameObject obj in _storedObjects)
+        {
+            foreach (KeyValuePair<int, float> entries in _storedColorValues)
+            {
+                if (obj.GetInstanceID() == entries.Key)
+                {
+                    Renderer _objRenderer = obj?.GetComponent<Renderer>();
 
+                    if (_objRenderer != null)
+                    {
+                        _objRenderer.material.color = new Color(entries.Value, _objRenderer.material.color.g, _objRenderer.material.color.b);
+                    }
+                }
+            }
+        }
+        _storedColorValues.Clear();
     }
-
-    // call method on slider change and adjust slider value to material color
-
 
     public void ProtanopiaOnClick()
     {
@@ -133,10 +129,8 @@ public class ProtanopiaFeature : MonoBehaviour
         {
             _activeMode++;
         }
-        else
-        {
-            _activeMode = 0;
-        }
+        else _activeMode = 0;
+     
         switch (_activeMode)
         {
             case _modes.unselected:
@@ -150,7 +144,7 @@ public class ProtanopiaFeature : MonoBehaviour
                 ActiveSlot2.SetActive(false);
                 ActiveSlot3.SetActive(false);
                 _featureText.text = "Protanopia \n (Red)";
-                ProtanopiaActive = false;
+                ResetProtanopia();
                 break;
             case _modes.preset1:
                 SelectedBorder.SetActive(true);
@@ -163,7 +157,6 @@ public class ProtanopiaFeature : MonoBehaviour
                 InactiveSlot2.SetActive(true);
                 InactiveSlot3.SetActive(true);
                 _featureText.text = "Protanopia \n (Preset1)";
-                ProtanopiaActive = true;
                 Preset1();
                 break;
             case _modes.preset2:
@@ -177,7 +170,6 @@ public class ProtanopiaFeature : MonoBehaviour
                 InactiveSlot2.SetActive(false);
                 InactiveSlot3.SetActive(true);
                 _featureText.text = "Protanopia \n (Preset2)";
-                ProtanopiaActive = true;
                 break;
             case _modes.preset3:
                 SelectedBorder.SetActive(true);
@@ -190,7 +182,6 @@ public class ProtanopiaFeature : MonoBehaviour
                 InactiveSlot2.SetActive(true);
                 InactiveSlot3.SetActive(false);
                 _featureText.text = "Protanopia \n (Preset3)";
-                ProtanopiaActive = true;
                 break;
         }
         
@@ -200,7 +191,6 @@ public class ProtanopiaFeature : MonoBehaviour
     {
         _featureText = FeatureText.GetComponent<TextMeshProUGUI>();
         _featureText.text = "Protanopia \n (Red)";
-
     }
 
     void Start()
