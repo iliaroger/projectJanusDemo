@@ -289,6 +289,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4619688038427212, guid: 5f6c85b6f6ab0b24abedd3e57447539c, type: 3}
   m_PrefabInstance: {fileID: 4480128}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5030916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1639068373288188, guid: de896aef9da32424e969d39f6d5169e1, type: 3}
+  m_PrefabInstance: {fileID: 1980161064}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5030917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5030916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &5030918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5030916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966a1e5d6ce20cc4eb7afda912a999f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7055540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11628,12 +11663,12 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 733159688}
-        m_TargetAssemblyTypeName: ProtanopiaFeature, Assembly-CSharp
+      - m_Target: {fileID: 733159693}
+        m_TargetAssemblyTypeName: DeuteranopiaFeature, Assembly-CSharp
         m_MethodName: RedChannelSliderOnChange
         m_Mode: 1
         m_Arguments:
@@ -12730,12 +12765,12 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 733159688}
-        m_TargetAssemblyTypeName: ProtanopiaFeature, Assembly-CSharp
+      - m_Target: {fileID: 733159684}
+        m_TargetAssemblyTypeName: TritanopiaFeature, Assembly-CSharp
         m_MethodName: RedChannelSliderOnChange
         m_Mode: 1
         m_Arguments:
@@ -19923,7 +19958,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 476103817}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 733159684}
+        m_TargetAssemblyTypeName: TritanopiaFeature, Assembly-CSharp
+        m_MethodName: ResetColorValues
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &476103817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23518,13 +23565,13 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 733159688}
-        m_TargetAssemblyTypeName: ProtanopiaFeature, Assembly-CSharp
-        m_MethodName: RedChannelSliderOnChange
+      - m_Target: {fileID: 733159684}
+        m_TargetAssemblyTypeName: TritanopiaFeature, Assembly-CSharp
+        m_MethodName: GreenChannelSliderOnChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23619,13 +23666,13 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 733159688}
-        m_TargetAssemblyTypeName: ProtanopiaFeature, Assembly-CSharp
-        m_MethodName: RedChannelSliderOnChange
+      - m_Target: {fileID: 733159693}
+        m_TargetAssemblyTypeName: DeuteranopiaFeature, Assembly-CSharp
+        m_MethodName: BlueChannelSliderOnChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29757,18 +29804,18 @@ GameObject:
   m_Component:
   - component: {fileID: 733159682}
   - component: {fileID: 733159683}
+  - component: {fileID: 733159688}
+  - component: {fileID: 733159693}
+  - component: {fileID: 733159684}
   - component: {fileID: 733159695}
   - component: {fileID: 733159694}
-  - component: {fileID: 733159693}
   - component: {fileID: 733159692}
   - component: {fileID: 733159691}
   - component: {fileID: 733159690}
   - component: {fileID: 733159689}
-  - component: {fileID: 733159688}
   - component: {fileID: 733159687}
   - component: {fileID: 733159686}
   - component: {fileID: 733159685}
-  - component: {fileID: 733159684}
   m_Layer: 0
   m_Name: Plugin
   m_TagString: Untagged
@@ -29817,6 +29864,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af3676bbbe33ba46aafe36c0268cb5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectedBorder: {fileID: 247947951}
+  UnselectedBorder: {fileID: 1605640898}
+  FeatureText: {fileID: 447472162}
+  FeatureSelectedIcon: {fileID: 287752676}
+  ActiveSlot1: {fileID: 829994508}
+  InactiveSlot1: {fileID: 1471561901}
+  ActiveSlot2: {fileID: 65528254}
+  InactiveSlot2: {fileID: 1222496617}
+  ActiveSlot3: {fileID: 95260843}
+  InactiveSlot3: {fileID: 118239107}
+  CustomPanel: {fileID: 1382929607}
+  RedChannelSlider: {fileID: 285007548}
+  GreenChannelSlider: {fileID: 547478195}
 --- !u!114 &733159685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29938,6 +29998,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3317f45a4080016488dc4cf02b349bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectedBorder: {fileID: 300941011}
+  UnselectedBorder: {fileID: 127485547}
+  FeatureText: {fileID: 1846139841}
+  FeatureSelectedIcon: {fileID: 1243015899}
+  ActiveSlot1: {fileID: 1320786358}
+  InactiveSlot1: {fileID: 1661888738}
+  ActiveSlot2: {fileID: 567107918}
+  InactiveSlot2: {fileID: 198927905}
+  ActiveSlot3: {fileID: 230739444}
+  InactiveSlot3: {fileID: 58390431}
+  CustomPanel: {fileID: 1555975443}
+  RedChannelSlider: {fileID: 263861472}
+  BlueChannelSlider: {fileID: 551008269}
 --- !u!114 &733159694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47822,6 +47895,7 @@ GameObject:
   - component: {fileID: 1215525773}
   - component: {fileID: 1215525775}
   - component: {fileID: 1215525774}
+  - component: {fileID: 1215525776}
   m_Layer: 5
   m_Name: interaction
   m_TagString: Untagged
@@ -47886,6 +47960,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215525772}
   m_CullTransparentMesh: 0
+--- !u!114 &1215525776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215525772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 733159684}
+          m_TargetAssemblyTypeName: TritanopiaFeature, Assembly-CSharp
+          m_MethodName: TritanopiaOnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1216015728
 GameObject:
   m_ObjectHideFlags: 0
@@ -49093,7 +49196,7 @@ GameObject:
   - component: {fileID: 1240632535}
   - component: {fileID: 1240632534}
   m_Layer: 5
-  m_Name: BlueText
+  m_Name: GreenText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49138,7 +49241,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Blue (%)
+  m_text: Green (%)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b93b00ee0c298db42b537c5caf5f525e, type: 2}
   m_sharedMaterial: {fileID: 887106967277820251, guid: b93b00ee0c298db42b537c5caf5f525e, type: 2}
@@ -52923,6 +53026,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966a1e5d6ce20cc4eb7afda912a999f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1315638454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315638452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1315859931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53998,6 +54119,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09571ff441362bc44bc0656d7a40736f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1342077867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342077865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1342531333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64303,6 +64442,7 @@ GameObject:
   - component: {fileID: 1585550800}
   - component: {fileID: 1585550802}
   - component: {fileID: 1585550801}
+  - component: {fileID: 1585550803}
   m_Layer: 5
   m_Name: interaction
   m_TagString: Untagged
@@ -64367,6 +64507,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585550799}
   m_CullTransparentMesh: 0
+--- !u!114 &1585550803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585550799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 733159693}
+          m_TargetAssemblyTypeName: DeuteranopiaFeature, Assembly-CSharp
+          m_MethodName: DeuteranopiaOnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1593666687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65046,7 +65215,7 @@ GameObject:
   - component: {fileID: 1609735753}
   - component: {fileID: 1609735752}
   m_Layer: 5
-  m_Name: GreenText
+  m_Name: RedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65091,7 +65260,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Green (%)
+  m_text: Red (%)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b93b00ee0c298db42b537c5caf5f525e, type: 2}
   m_sharedMaterial: {fileID: 887106967277820251, guid: b93b00ee0c298db42b537c5caf5f525e, type: 2}
@@ -65400,6 +65569,41 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9600a76efc6c96648ba5415cea39fd58, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baebdd3b26f756b4c8f1b2d2efe1cf42, type: 3}
+--- !u!1 &1613937546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1348288584672764, guid: 7ab16310faa910d40b16db3d54919077, type: 3}
+  m_PrefabInstance: {fileID: 1135490963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1613937547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613937546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1613937548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613937546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09571ff441362bc44bc0656d7a40736f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1615268154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76102,6 +76306,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb3d03a694f48f44b61f7a6266c5952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1899817295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899817293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1902313838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79723,7 +79945,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1980498445}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 733159693}
+        m_TargetAssemblyTypeName: DeuteranopiaFeature, Assembly-CSharp
+        m_MethodName: ResetColorValues
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1980498445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81259,6 +81493,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021019377}
   m_CullTransparentMesh: 0
+--- !u!1 &2022698504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1639068373288188, guid: de896aef9da32424e969d39f6d5169e1, type: 3}
+  m_PrefabInstance: {fileID: 960880203}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2022698505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022698504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &2022698506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022698504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966a1e5d6ce20cc4eb7afda912a999f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2023607390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83736,6 +84005,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4796727144638148, guid: bd97c05e714e4e44a95ebdeaa26a6c9f, type: 3}
   m_PrefabInstance: {fileID: 2086989790}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2089634999 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1710834516998308, guid: b790166e687772541a9e88161f45ee6f, type: 3}
+  m_PrefabInstance: {fileID: 528237243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2089635000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089634999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &2089635001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089634999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966a1e5d6ce20cc4eb7afda912a999f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2089751456
 GameObject:
   m_ObjectHideFlags: 0
@@ -83823,7 +84127,7 @@ GameObject:
   - component: {fileID: 2089987615}
   - component: {fileID: 2089987614}
   m_Layer: 5
-  m_Name: GreenText
+  m_Name: RedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83868,7 +84172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Green (%)
+  m_text: Red (%)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b93b00ee0c298db42b537c5caf5f525e, type: 2}
   m_sharedMaterial: {fileID: 887106967277820251, guid: b93b00ee0c298db42b537c5caf5f525e, type: 2}

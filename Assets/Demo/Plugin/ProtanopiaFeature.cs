@@ -27,8 +27,9 @@ public class ProtanopiaFeature : MonoBehaviour
     private TextMeshProUGUI _featureText;
     private Slider _greenChannelSlider;
     private Slider _blueChannelSlider;
+
     // ui state
-    static bool ProtanopiaActive = false;
+    public bool ProtanopiaActive = false;
     private _modes _activeMode = _modes.unselected;
     private enum _modes
     {
@@ -37,6 +38,10 @@ public class ProtanopiaFeature : MonoBehaviour
         preset2,
         preset3,
     }
+
+    // modes references
+    private DeuteranopiaFeature _deaturanopiaReference;
+    private TritanopiaFeature _tritanopiaReference;
 
     // dictionary objects
     private IDictionary<int, Color> _initObjectsData = new Dictionary<int, Color>();
@@ -291,91 +296,85 @@ public class ProtanopiaFeature : MonoBehaviour
 
     public void ProtanopiaOnClick()
     {
-        if ((int)_activeMode < 3)
+        if (!_deaturanopiaReference.DeuteranopiaActive && !_tritanopiaReference.TritanopiaActive )
         {
-            _activeMode++;
+            if ((int)_activeMode < 3)
+            {
+                _activeMode++;
+            }
+            else _activeMode = 0;
+
+            switch (_activeMode)
+            {
+                case _modes.unselected:
+                    SelectedBorder.SetActive(false);
+                    UnselectedBorder.SetActive(true);
+                    FeatureSelectedIcon.SetActive(false);
+                    InactiveSlot1.SetActive(true);
+                    InactiveSlot2.SetActive(true);
+                    InactiveSlot3.SetActive(true);
+                    ActiveSlot1.SetActive(false);
+                    ActiveSlot2.SetActive(false);
+                    ActiveSlot3.SetActive(false);
+                    CustomPanel.SetActive(false);
+                    _featureText.text = "Protanopia \n (Red)";
+                    ResetProtanopia();
+                    ProtanopiaActive = false;
+                    break;
+                case _modes.preset1:
+                    SelectedBorder.SetActive(true);
+                    UnselectedBorder.SetActive(false);
+                    FeatureSelectedIcon.SetActive(true);
+                    ActiveSlot1.SetActive(true);
+                    ActiveSlot2.SetActive(false);
+                    ActiveSlot3.SetActive(false);
+                    InactiveSlot1.SetActive(false);
+                    InactiveSlot2.SetActive(true);
+                    InactiveSlot3.SetActive(true);
+                    CustomPanel.SetActive(true);
+                    _featureText.text = "Protanopia \n (Preset1)";
+                    Preset1();
+                    break;
+                case _modes.preset2:
+                    SelectedBorder.SetActive(true);
+                    UnselectedBorder.SetActive(false);
+                    FeatureSelectedIcon.SetActive(true);
+                    ActiveSlot1.SetActive(false);
+                    ActiveSlot2.SetActive(true);
+                    ActiveSlot3.SetActive(false);
+                    InactiveSlot1.SetActive(true);
+                    InactiveSlot2.SetActive(false);
+                    InactiveSlot3.SetActive(true);
+                    CustomPanel.SetActive(false);
+                    _featureText.text = "Protanopia \n (Preset2)";
+                    Preset2();
+                    break;
+                case _modes.preset3:
+                    SelectedBorder.SetActive(true);
+                    UnselectedBorder.SetActive(false);
+                    FeatureSelectedIcon.SetActive(true);
+                    ActiveSlot1.SetActive(false);
+                    ActiveSlot2.SetActive(false);
+                    ActiveSlot3.SetActive(true);
+                    InactiveSlot1.SetActive(true);
+                    InactiveSlot2.SetActive(true);
+                    InactiveSlot3.SetActive(false);
+                    CustomPanel.SetActive(false);
+                    _featureText.text = "Protanopia \n (Preset3)";
+                    Preset3();
+                    break;
+            }
         }
-        else _activeMode = 0;
-     
-        switch (_activeMode)
-        {
-            case _modes.unselected:
-                SelectedBorder.SetActive(false);
-                UnselectedBorder.SetActive(true);
-                FeatureSelectedIcon.SetActive(false);
-                InactiveSlot1.SetActive(true);
-                InactiveSlot2.SetActive(true);
-                InactiveSlot3.SetActive(true);
-                ActiveSlot1.SetActive(false);
-                ActiveSlot2.SetActive(false);
-                ActiveSlot3.SetActive(false);
-                CustomPanel.SetActive(false);
-                _featureText.text = "Protanopia \n (Red)";
-                ResetProtanopia();
-                break;
-            case _modes.preset1:
-                SelectedBorder.SetActive(true);
-                UnselectedBorder.SetActive(false);
-                FeatureSelectedIcon.SetActive(true);
-                ActiveSlot1.SetActive(true);
-                ActiveSlot2.SetActive(false);
-                ActiveSlot3.SetActive(false);
-                InactiveSlot1.SetActive(false);
-                InactiveSlot2.SetActive(true);
-                InactiveSlot3.SetActive(true);
-                CustomPanel.SetActive(true);
-                _featureText.text = "Protanopia \n (Preset1)";
-                Preset1();
-                break;
-            case _modes.preset2:
-                SelectedBorder.SetActive(true);
-                UnselectedBorder.SetActive(false);
-                FeatureSelectedIcon.SetActive(true);
-                ActiveSlot1.SetActive(false);
-                ActiveSlot2.SetActive(true);
-                ActiveSlot3.SetActive(false);
-                InactiveSlot1.SetActive(true);
-                InactiveSlot2.SetActive(false);
-                InactiveSlot3.SetActive(true);
-                CustomPanel.SetActive(false);
-                _featureText.text = "Protanopia \n (Preset2)";
-                Preset2();
-                break;
-            case _modes.preset3:
-                SelectedBorder.SetActive(true);
-                UnselectedBorder.SetActive(false);
-                FeatureSelectedIcon.SetActive(true);
-                ActiveSlot1.SetActive(false);
-                ActiveSlot2.SetActive(false);
-                ActiveSlot3.SetActive(true);
-                InactiveSlot1.SetActive(true);
-                InactiveSlot2.SetActive(true);
-                InactiveSlot3.SetActive(false);
-                CustomPanel.SetActive(false);
-                _featureText.text = "Protanopia \n (Preset3)";
-                Preset3();
-                break;
-        }
-        
     }
 
     private void Awake()
     {
+        _deaturanopiaReference = FindObjectOfType<DeuteranopiaFeature>();
+        _tritanopiaReference = FindObjectOfType<TritanopiaFeature>();
         _featureText = FeatureText.GetComponent<TextMeshProUGUI>();
         _featureText.text = "Protanopia \n (Red)";
         _greenChannelSlider = GreenChannelSlider.GetComponent<Slider>();
         _blueChannelSlider = BlueChannelSlider.GetComponent<Slider>();
         DeactivateOutline();
-    }
-
-    void Start()
-    {
-       
-    }
-
-    
-    void Update()
-    {
-        
     }
 }
