@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Diagnostics;
+using UnityEngine.UI;
 
 public class ProtanopiaFeature : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class ProtanopiaFeature : MonoBehaviour
     public GameObject SelectedBorder;
     public GameObject UnselectedBorder;
     public GameObject FeatureText;
-    private TextMeshProUGUI _featureText;
     public GameObject FeatureSelectedIcon;
     public GameObject ActiveSlot1;
     public GameObject InactiveSlot1;
@@ -19,7 +19,14 @@ public class ProtanopiaFeature : MonoBehaviour
     public GameObject InactiveSlot2;
     public GameObject ActiveSlot3;
     public GameObject InactiveSlot3;
+    public GameObject CustomPanel;
+    public GameObject GreenChannelSlider;
+    public GameObject BlueChannelSlider;
 
+    // ui components
+    private TextMeshProUGUI _featureText;
+    private Slider _greenChannelSlider;
+    private Slider _blueChannelSlider;
     // ui state
     static bool ProtanopiaActive = false;
     private _modes _activeMode = _modes.unselected;
@@ -32,23 +39,35 @@ public class ProtanopiaFeature : MonoBehaviour
     }
 
     // dictionary objects
-
     private IDictionary<int, Color> _initObjectsData = new Dictionary<int, Color>();
     private List<Object> _storedObjects = new List<Object>();
-    private Dictionary<int, float> _storedColorValues = new Dictionary<int, float>();
+
+    // init color values 
+    private Dictionary<int, float> _redColorValues = new Dictionary<int, float>();
+    private Dictionary<int, float> _greenColorValues = new Dictionary<int, float>();
+    private Dictionary<int, float> _blueColorValues = new Dictionary<int, float>();
 
     // protanopia + custom sliders
     private void Preset1()
     {
-        // preset 3 
-        //Foe[] _foeSubjects = FindObjectsOfType(typeof(Foe)) as Foe[];
-        //foreach (Foe foeSubject in _foeSubjects)
-        //{
-        //    Renderer _foeRenderer = foeSubject.GetComponent<Renderer>();
-        //    _foeRenderer.material.color = new Color(0, _foeRenderer.material.color.g, _foeRenderer.material.color.b);
-        //}
-
         SaveObjectColor();
+        ApplyProtanopia();
+        ProtanopiaActive = true;
+    }
+
+    private void Preset2()
+    {
+        ProtanopiaActive = true;
+    }
+
+    private void Preset3()
+    {
+        Foe[] _foeSubjects = FindObjectsOfType(typeof(Foe)) as Foe[];
+        foreach (Foe foeSubject in _foeSubjects)
+        {
+            Renderer _foeRenderer = foeSubject.GetComponent<Renderer>();
+            _foeRenderer.material.color = new Color(0, _foeRenderer.material.color.g, _foeRenderer.material.color.b);
+        }
         ProtanopiaActive = true;
     }
 
@@ -69,11 +88,12 @@ public class ProtanopiaFeature : MonoBehaviour
                 {
                     Renderer _checkColor = obj?.GetComponent<Renderer>();
                     _storedObjects.Add(obj);
-                    _storedColorValues.Add(obj.GetInstanceID(), _checkColor.material.color.r);
+                    _redColorValues.Add(obj.GetInstanceID(), _checkColor.material.color.r);
+                    _greenColorValues.Add(obj.GetInstanceID(), _checkColor.material.color.g);
+                    _blueColorValues.Add(obj.GetInstanceID(), _checkColor.material.color.b);
                 }
             }
         }
-        ApplyProtanopia();
         _calc.Stop();
         
         string elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
@@ -107,20 +127,80 @@ public class ProtanopiaFeature : MonoBehaviour
     {
         foreach (GameObject obj in _storedObjects)
         {
-            foreach (KeyValuePair<int, float> entries in _storedColorValues)
+            foreach (KeyValuePair<int, float> redPair in _redColorValues)
             {
-                if (obj.GetInstanceID() == entries.Key)
+                if (obj.GetInstanceID() == redPair.Key)
                 {
-                    Renderer _objRenderer = obj?.GetComponent<Renderer>();
-
-                    if (_objRenderer != null)
+                    foreach (KeyValuePair<int, float> greenPair in _greenColorValues)
                     {
-                        _objRenderer.material.color = new Color(entries.Value, _objRenderer.material.color.g, _objRenderer.material.color.b);
+                        if (obj.GetInstanceID() == greenPair.Key)
+                        {
+                            foreach (KeyValuePair<int, float> bluePair in _blueColorValues)
+                            {
+                                if (obj.GetInstanceID() == bluePair.Key)
+                                {
+                                    Renderer _objRenderer = obj?.GetComponent<Renderer>();
+
+                                    if (_objRenderer != null)
+                                    {
+                                        _objRenderer.material.color = new Color(redPair.Value, greenPair.Value, bluePair.Value);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-        _storedColorValues.Clear();
+        _redColorValues.Clear();
+        _greenColorValues.Clear();
+        _blueColorValues.Clear();
+    }
+
+    // preset2 -> outline, preset3 -> outline + highlight
+
+    private float EqualValueSlider(float value, float objValue)
+    {
+        if ((value - 0.5f) + objValue <= 1)
+        {
+            return (value - 0.5f) + objValue;
+        }
+        else return 1;
+        
+    }
+
+    public void GreenChannelSliderOnChange()
+    {
+        Slider _greenSliderComponent = _greenChannelSlider.GetComponent<Slider>();
+        float _sliderValue = _greenSliderComponent.value;
+        //grab all materials from storedobjects
+        foreach (GameObject obj in _storedObjects)
+        {
+            Renderer _objRenderer = obj?.GetComponent<Renderer>();
+            _objRenderer.material.color = new Color(0, EqualValueSlider(_sliderValue, _objRenderer.material.color.g), _objRenderer.material.color.b);
+        }
+    }
+
+    public void BlueChannelSliderOnChange()
+    {
+        Slider _blueSliderComponent = _blueChannelSlider?.GetComponent<Slider>();
+        float _sliderValue = _blueSliderComponent.value;
+
+        foreach (GameObject obj in _storedObjects)
+        {
+            Renderer _objRenderer = obj?.GetComponent<Renderer>();
+            _objRenderer.material.color = new Color(0, _objRenderer.material.color.g, EqualValueSlider(_sliderValue, _objRenderer.material.color.b));
+        }
+    }
+
+
+    public void ResetColorValues()
+    {
+        _greenChannelSlider.value = 0.5f;
+        _blueChannelSlider.value = 0.5f;
+        ResetProtanopia();
+        SaveObjectColor();
+        ApplyProtanopia();
     }
 
     public void ProtanopiaOnClick()
@@ -143,6 +223,7 @@ public class ProtanopiaFeature : MonoBehaviour
                 ActiveSlot1.SetActive(false);
                 ActiveSlot2.SetActive(false);
                 ActiveSlot3.SetActive(false);
+                CustomPanel.SetActive(false);
                 _featureText.text = "Protanopia \n (Red)";
                 ResetProtanopia();
                 break;
@@ -156,6 +237,7 @@ public class ProtanopiaFeature : MonoBehaviour
                 InactiveSlot1.SetActive(false);
                 InactiveSlot2.SetActive(true);
                 InactiveSlot3.SetActive(true);
+                CustomPanel.SetActive(true);
                 _featureText.text = "Protanopia \n (Preset1)";
                 Preset1();
                 break;
@@ -169,6 +251,7 @@ public class ProtanopiaFeature : MonoBehaviour
                 InactiveSlot1.SetActive(true);
                 InactiveSlot2.SetActive(false);
                 InactiveSlot3.SetActive(true);
+                CustomPanel.SetActive(false);
                 _featureText.text = "Protanopia \n (Preset2)";
                 break;
             case _modes.preset3:
@@ -181,6 +264,7 @@ public class ProtanopiaFeature : MonoBehaviour
                 InactiveSlot1.SetActive(true);
                 InactiveSlot2.SetActive(true);
                 InactiveSlot3.SetActive(false);
+                CustomPanel.SetActive(false);
                 _featureText.text = "Protanopia \n (Preset3)";
                 break;
         }
@@ -191,11 +275,13 @@ public class ProtanopiaFeature : MonoBehaviour
     {
         _featureText = FeatureText.GetComponent<TextMeshProUGUI>();
         _featureText.text = "Protanopia \n (Red)";
+        _greenChannelSlider = GreenChannelSlider.GetComponent<Slider>();
+        _blueChannelSlider = BlueChannelSlider.GetComponent<Slider>();
     }
 
     void Start()
     {
-        
+       
     }
 
     
