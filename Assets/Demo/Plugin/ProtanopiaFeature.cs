@@ -57,18 +57,103 @@ public class ProtanopiaFeature : MonoBehaviour
 
     private void Preset2()
     {
+        ActivateOutline();
         ProtanopiaActive = true;
     }
 
     private void Preset3()
     {
-        Foe[] _foeSubjects = FindObjectsOfType(typeof(Foe)) as Foe[];
-        foreach (Foe foeSubject in _foeSubjects)
-        {
-            Renderer _foeRenderer = foeSubject.GetComponent<Renderer>();
-            _foeRenderer.material.color = new Color(0, _foeRenderer.material.color.g, _foeRenderer.material.color.b);
-        }
+        FocusColors();
         ProtanopiaActive = true;
+    }
+
+
+    private void FocusColors()
+    {
+        Object[] _allGameObjects = FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in _allGameObjects)
+        {
+            Outline _objOutline = obj?.GetComponent<Outline>();
+            if (_objOutline == null) 
+            {
+                Renderer _objRenderer = obj?.GetComponent<Renderer>();
+                if (_objRenderer != null)
+                {
+                    _objRenderer.material.color = new Color(0,1,1);
+                }
+            }
+        }
+    }
+
+    private float InvertOutlineColor(float color, string type)
+    {
+
+        if (type == "green")
+        {
+            Color32 _newColor = new Color(0, color, 0);
+            int _convertedColor = _newColor.g - 255;
+            int _normalizedColor;
+
+            if (_convertedColor <= 0)
+            {
+                _normalizedColor = _convertedColor * (-1);
+            }
+            else _normalizedColor = _convertedColor;
+
+            Color _floatColor = new Color32(0, (byte)_normalizedColor, 0, 1);
+
+            return _floatColor.g;
+        } 
+        else
+        {
+            Color32 _newColor = new Color(0, 0, color);
+            int _convertedColor = _newColor.b - 255;
+            int _normalizedColor;
+
+            if (_convertedColor <= 0)
+            {
+                _normalizedColor = _convertedColor * (-1);
+            }
+            else _normalizedColor = _convertedColor;
+
+            Color _floatColor = new Color32(0, 0, (byte)_normalizedColor, 1);
+
+            return _floatColor.b;
+        }
+    }
+
+    private void ActivateOutline()
+    {
+        Object[] _allGameObjects = FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in _allGameObjects)
+        {
+            Outline _objOutline = obj?.GetComponent<Outline>();
+
+            if (_objOutline != null)
+            {
+                Renderer _objRenderer = obj?.GetComponent<Renderer>();
+                _objOutline.enabled = true;
+                _objOutline.OutlineMode = Outline.Mode.OutlineVisible;
+                _objOutline.OutlineWidth = 5f;
+                _objOutline.OutlineColor = new Color(0, InvertOutlineColor(_objRenderer.material.color.g, "green"), InvertOutlineColor(_objRenderer.material.color.b, "blue"));
+            }
+        }
+    }
+
+    private void DeactivateOutline()
+    {
+        Object[] _allGameObjects = FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in _allGameObjects)
+        {
+            Outline _objectOutline = obj?.GetComponent<Outline>();
+            if (_objectOutline != null)
+            {
+                _objectOutline.enabled = false;
+            }
+        }
     }
 
     private void SaveObjectColor()
@@ -155,6 +240,7 @@ public class ProtanopiaFeature : MonoBehaviour
         _redColorValues.Clear();
         _greenColorValues.Clear();
         _blueColorValues.Clear();
+        DeactivateOutline();
     }
 
     // preset2 -> outline, preset3 -> outline + highlight
@@ -253,6 +339,7 @@ public class ProtanopiaFeature : MonoBehaviour
                 InactiveSlot3.SetActive(true);
                 CustomPanel.SetActive(false);
                 _featureText.text = "Protanopia \n (Preset2)";
+                Preset2();
                 break;
             case _modes.preset3:
                 SelectedBorder.SetActive(true);
@@ -266,6 +353,7 @@ public class ProtanopiaFeature : MonoBehaviour
                 InactiveSlot3.SetActive(false);
                 CustomPanel.SetActive(false);
                 _featureText.text = "Protanopia \n (Preset3)";
+                Preset3();
                 break;
         }
         
@@ -277,6 +365,7 @@ public class ProtanopiaFeature : MonoBehaviour
         _featureText.text = "Protanopia \n (Red)";
         _greenChannelSlider = GreenChannelSlider.GetComponent<Slider>();
         _blueChannelSlider = BlueChannelSlider.GetComponent<Slider>();
+        DeactivateOutline();
     }
 
     void Start()
