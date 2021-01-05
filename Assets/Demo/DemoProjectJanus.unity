@@ -29807,14 +29807,14 @@ GameObject:
   - component: {fileID: 733159688}
   - component: {fileID: 733159693}
   - component: {fileID: 733159684}
+  - component: {fileID: 733159691}
+  - component: {fileID: 733159690}
+  - component: {fileID: 733159686}
   - component: {fileID: 733159695}
   - component: {fileID: 733159694}
   - component: {fileID: 733159692}
-  - component: {fileID: 733159691}
-  - component: {fileID: 733159690}
   - component: {fileID: 733159689}
   - component: {fileID: 733159687}
-  - component: {fileID: 733159686}
   - component: {fileID: 733159685}
   m_Layer: 0
   m_Name: Plugin
@@ -29877,6 +29877,7 @@ MonoBehaviour:
   CustomPanel: {fileID: 1382929607}
   RedChannelSlider: {fileID: 285007548}
   GreenChannelSlider: {fileID: 547478195}
+  TritanopiaActive: 0
 --- !u!114 &733159685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29901,6 +29902,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f933d1054a6033a4d91554bc20df8646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectedBorder: {fileID: 941015071}
+  UnselectedBorder: {fileID: 1548972371}
+  FeatureText: {fileID: 1653224101}
+  FeatureSelectedIcon: {fileID: 424929080}
+  ActiveSlot1: {fileID: 1122203100}
+  InactiveSlot1: {fileID: 745784312}
+  ActiveSlot2: {fileID: 651190733}
+  InactiveSlot2: {fileID: 1905217995}
+  ActiveSlot3: {fileID: 362378794}
+  InactiveSlot3: {fileID: 376888416}
 --- !u!114 &733159687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29938,6 +29949,7 @@ MonoBehaviour:
   CustomPanel: {fileID: 1194177061}
   GreenChannelSlider: {fileID: 1067785068}
   BlueChannelSlider: {fileID: 465209850}
+  ProtanopiaActive: 0
 --- !u!114 &733159689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29962,6 +29974,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d534cc979d5834089c98f0c3e67b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectedBorder: {fileID: 2089751456}
+  UnselectedBorder: {fileID: 1527072894}
+  FeatureText: {fileID: 614604159}
+  FeatureSelectedIcon: {fileID: 1994478282}
+  ActiveSlot1: {fileID: 1967541131}
+  InactiveSlot1: {fileID: 1563404858}
+  ActiveSlot2: {fileID: 227340862}
+  InactiveSlot2: {fileID: 1537711498}
+  ActiveSlot3: {fileID: 1623879508}
+  InactiveSlot3: {fileID: 1648310200}
 --- !u!114 &733159691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29974,6 +29996,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321c6dd42ffd9374aa68bf74c9e40a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectedBorder: {fileID: 44496259}
+  UnselectedBorder: {fileID: 1004273933}
+  FeatureText: {fileID: 1625865999}
+  FeatureSelectedIcon: {fileID: 1803324585}
+  ActiveSlot1: {fileID: 2106176984}
+  InactiveSlot1: {fileID: 597504648}
+  ActiveSlot2: {fileID: 1227359272}
+  InactiveSlot2: {fileID: 941335066}
+  ActiveSlot3: {fileID: 1132906702}
+  InactiveSlot3: {fileID: 1207948184}
 --- !u!114 &733159692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30011,6 +30043,7 @@ MonoBehaviour:
   CustomPanel: {fileID: 1555975443}
   RedChannelSlider: {fileID: 263861472}
   BlueChannelSlider: {fileID: 551008269}
+  DeuteranopiaActive: 0
 --- !u!114 &733159694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52115,6 +52148,7 @@ GameObject:
   - component: {fileID: 1301654892}
   - component: {fileID: 1301654894}
   - component: {fileID: 1301654893}
+  - component: {fileID: 1301654895}
   m_Layer: 5
   m_Name: interaction
   m_TagString: Untagged
@@ -52179,6 +52213,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301654891}
   m_CullTransparentMesh: 0
+--- !u!114 &1301654895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301654891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 733159686}
+          m_TargetAssemblyTypeName: TextSpacingFeature, Assembly-CSharp
+          m_MethodName: FontSpacingOnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1304127900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62910,6 +62973,7 @@ GameObject:
   - component: {fileID: 1546462510}
   - component: {fileID: 1546462512}
   - component: {fileID: 1546462511}
+  - component: {fileID: 1546462513}
   m_Layer: 5
   m_Name: interaction
   m_TagString: Untagged
@@ -62974,6 +63038,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546462509}
   m_CullTransparentMesh: 0
+--- !u!114 &1546462513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546462509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 733159690}
+          m_TargetAssemblyTypeName: FontSizeFeature, Assembly-CSharp
+          m_MethodName: FontSizeOnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1547458631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67311,6 +67404,7 @@ GameObject:
   - component: {fileID: 1649259064}
   - component: {fileID: 1649259066}
   - component: {fileID: 1649259065}
+  - component: {fileID: 1649259067}
   m_Layer: 5
   m_Name: interaction
   m_TagString: Untagged
@@ -67375,6 +67469,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649259063}
   m_CullTransparentMesh: 0
+--- !u!114 &1649259067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649259063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 733159691}
+          m_TargetAssemblyTypeName: DyslexiaFontFeature, Assembly-CSharp
+          m_MethodName: DyslexiaFontOnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1649417999
 PrefabInstance:
   m_ObjectHideFlags: 0
