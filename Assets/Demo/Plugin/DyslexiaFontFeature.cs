@@ -235,8 +235,8 @@ public class DyslexiaFontFeature : MonoBehaviour
     {
         _featureText = FeatureText.GetComponent<TextMeshProUGUI>();
         _featureText.text = "Dyslexia Font \n (Unset)";
-        _openDyslexia = (TMP_FontAsset)AssetDatabase.LoadAssetAtPath("Assets/Demo/Fonts/openDyslexia/OpenDyslexic-Regular SDF.asset", typeof(TMP_FontAsset));
-        _easyReading = (TMP_FontAsset)AssetDatabase.LoadAssetAtPath("Assets/Demo/Fonts/easyReading/EasyReadingPRO SDF.asset", typeof(TMP_FontAsset));
-        _arial = (TMP_FontAsset)AssetDatabase.LoadAssetAtPath("Assets/Demo/Fonts/arial/ArialCE SDF.asset", typeof(TMP_FontAsset));
+        _openDyslexia = Resources.Load<TMP_FontAsset>("Fonts/openDyslexia/OpenDyslexic-Regular SDF");
+        _easyReading = Resources.Load<TMP_FontAsset>("Fonts/easyReading/EasyReadingPRO SDF");
+        _arial = Resources.Load<TMP_FontAsset>("Fonts/arial/ArialCE SDF");
     }
 }

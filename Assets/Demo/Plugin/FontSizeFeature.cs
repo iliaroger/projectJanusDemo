@@ -30,11 +30,8 @@ public class FontSizeFeature : MonoBehaviour
         preset3,
     }
 
-    private int _resetFontSize = -12;
-    private int _increase1 = 2;
-    private int _increase2 = 4;
-    private int _increase3 = 6;
-
+    private int _resetFontSize = -6;
+    private int _increment= 2;
 
     private void IncreaseFontSize(int increment)
     {
@@ -88,7 +85,7 @@ public class FontSizeFeature : MonoBehaviour
                 InactiveSlot2.SetActive(true);
                 InactiveSlot3.SetActive(true);
                 _featureText.text = "Font Size \n (Preset1)";
-                IncreaseFontSize(_increase1);
+                IncreaseFontSize(_increment);
                 break;
             case _modes.preset2:
                 SelectedBorder.SetActive(true);
@@ -101,7 +98,7 @@ public class FontSizeFeature : MonoBehaviour
                 InactiveSlot2.SetActive(false);
                 InactiveSlot3.SetActive(true);
                 _featureText.text = "Font Size \n (Preset2)";
-                IncreaseFontSize(_increase2);
+                IncreaseFontSize(_increment);
                 break;
             case _modes.preset3:
                 SelectedBorder.SetActive(true);
@@ -114,7 +111,7 @@ public class FontSizeFeature : MonoBehaviour
                 InactiveSlot2.SetActive(true);
                 InactiveSlot3.SetActive(false);
                 _featureText.text = "Font Size \n (Preset3)";
-                IncreaseFontSize(_increase3);
+                IncreaseFontSize(_increment);
                 break;
         }
     }
