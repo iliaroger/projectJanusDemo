@@ -71,13 +71,14 @@
     <Compile Include="Assets\Demo\Plugin\InvertSpectrumFeature.cs" />
     <Compile Include="Assets\Demo\Plugin\TagScripts\Highlight.cs" />
     <Compile Include="Assets\Demo\Plugin\DeuteranopiaFeature.cs" />
+    <Compile Include="Assets\Demo\Plugin\TagScripts\Tooltip.cs" />
     <Compile Include="Assets\Demo\Plugin\TritanopiaFeature.cs" />
     <Compile Include="Assets\Outline\Scripts\Outline.cs" />
     <Compile Include="Assets\Demo\Plugin\BigCursorFeature.cs" />
     <Compile Include="Assets\Demo\Plugin\FontSizeFeature.cs" />
     <Compile Include="Assets\Demo\Plugin\TagScripts\Friendly.cs" />
     <Compile Include="Assets\Demo\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Demo\Plugin\TagScripts\Tooltip.cs" />
+    <Compile Include="Assets\Demo\Plugin\TagScripts\ReadingGuide.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

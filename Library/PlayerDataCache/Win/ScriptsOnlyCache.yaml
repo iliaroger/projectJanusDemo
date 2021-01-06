@@ -17,8 +17,10 @@ ScriptsOnlyBuild:
     - InvertSpectrumFeature
     - Outline
     - ProtanopiaFeature
+    - ReadingGuide
     - ReadingGuideFeature
     - TextSpacingFeature
+    - Tooltip
     - TooltipsFeature
     - TritanopiaFeature
     Unity.CollabProxy.Editor.dll:
@@ -227,49 +229,53 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14606}
     - Class: 114
-      Script: {instanceID: 14690}
+      Script: {instanceID: 14640}
     - Class: 114
-      Script: {instanceID: 14774}
+      Script: {instanceID: 14692}
     - Class: 114
-      Script: {instanceID: 14816}
+      Script: {instanceID: 14776}
     - Class: 114
-      Script: {instanceID: 14918}
+      Script: {instanceID: 14818}
     - Class: 114
-      Script: {instanceID: 14980}
+      Script: {instanceID: 14920}
     - Class: 114
-      Script: {instanceID: 14990}
+      Script: {instanceID: 14982}
     - Class: 114
-      Script: {instanceID: 15040}
+      Script: {instanceID: 14992}
     - Class: 114
-      Script: {instanceID: 15182}
+      Script: {instanceID: 15042}
     - Class: 114
-      Script: {instanceID: 15240}
+      Script: {instanceID: 15184}
     - Class: 114
-      Script: {instanceID: 15288}
+      Script: {instanceID: 15242}
     - Class: 114
-      Script: {instanceID: 15422}
+      Script: {instanceID: 15290}
     - Class: 114
-      Script: {instanceID: 15466}
+      Script: {instanceID: 15424}
     - Class: 114
-      Script: {instanceID: 15478}
+      Script: {instanceID: 15468}
     - Class: 114
-      Script: {instanceID: 15494}
+      Script: {instanceID: 15480}
     - Class: 114
-      Script: {instanceID: 15608}
+      Script: {instanceID: 15496}
     - Class: 114
-      Script: {instanceID: 15662}
+      Script: {instanceID: 15610}
     - Class: 114
       Script: {instanceID: 15664}
     - Class: 114
-      Script: {instanceID: 15694}
+      Script: {instanceID: 15666}
     - Class: 114
-      Script: {instanceID: 15718}
+      Script: {instanceID: 15696}
     - Class: 114
-      Script: {instanceID: 15752}
+      Script: {instanceID: 15720}
     - Class: 114
-      Script: {instanceID: 15844}
+      Script: {instanceID: 15754}
     - Class: 114
-      Script: {instanceID: 15852}
+      Script: {instanceID: 15846}
+    - Class: 114
+      Script: {instanceID: 15854}
+    - Class: 114
+      Script: {instanceID: 271672}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -393,7 +399,7 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 87e3147c780a37b672e0f8b6142b3fee
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DesaturateFeature
@@ -501,7 +507,7 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 87e3147c780a37b672e0f8b6142b3fee
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ReadingGuideFeature
@@ -789,7 +795,7 @@ ScriptsOnlyBuild:
     className: UniversalAdditionalLightData
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 81f336e2cc692f9dc9febfb44bfe7573
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TooltipsFeature
@@ -819,7 +825,7 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 87e3147c780a37b672e0f8b6142b3fee
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: InvertSpectrumFeature
@@ -907,6 +913,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: DebugUIHandlerButton
+  - hash:
+      serializedVersion: 2
+      Hash: aa97976a1e6e8920c56dce0b23942acb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Tooltip
   - hash:
       serializedVersion: 2
       Hash: 597cfde2e60b842b3acbd2961ff0631b
@@ -1219,6 +1231,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ReadingGuide
   platform: 5
   scenePathNames:
   - Assets/Demo/DemoProjectJanus.unity

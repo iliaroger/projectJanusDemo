@@ -1,18 +1,106 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class DisableEffectsFeature : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    // ui reference
+    public GameObject SelectedBorder;
+    public GameObject UnselectedBorder;
+    public GameObject FeatureSelectedIcon;
+
+
+    // ui state
+    private _modes _activeMode = _modes.unselected;
+    private enum _modes
     {
-        
+        unselected,
+        preset1,
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void DisableEffects()
     {
-        
+        GameObject[] _allObjects = FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in _allObjects)
+        {
+            ParticleSystem _objParticleSystem = obj?.GetComponent<ParticleSystem>();
+            TrailRenderer _objTrailRenderer = obj?.GetComponent<TrailRenderer>();
+            LineRenderer _objLineRenderer = obj?.GetComponent<LineRenderer>();
+            Projector _objProjector = obj?.GetComponent<Projector>();
+            if (_objLineRenderer != null)
+            {
+                _objLineRenderer.enabled = false;
+            }
+            else if (_objTrailRenderer != null)
+            {
+                _objTrailRenderer.enabled = false;
+            }
+            else if (_objProjector != null)
+            {
+                _objProjector.enabled = false;
+            }
+            else if (_objParticleSystem != null)
+            {
+                _objParticleSystem.Stop();
+            }
+        }
+    }
+
+    private void EnableEffects()
+    {
+        GameObject[] _allObjects = FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in _allObjects)
+        {
+            ParticleSystem _objParticleSystem = obj?.GetComponent<ParticleSystem>();
+            TrailRenderer _objTrailRenderer = obj?.GetComponent<TrailRenderer>();
+            LineRenderer _objLineRenderer = obj?.GetComponent<LineRenderer>();
+            Projector _objProjector = obj?.GetComponent<Projector>();
+            if (_objLineRenderer != null)
+            {
+                _objLineRenderer.enabled = true;
+            }
+            else if (_objTrailRenderer != null)
+            {
+                _objTrailRenderer.enabled = true;
+            }
+            else if (_objProjector != null)
+            {
+                _objProjector.enabled = true;
+            }
+            else if (_objParticleSystem != null)
+            {
+                _objParticleSystem.Play();
+            }
+        }
+    }
+ 
+
+
+
+    public void DisableEffectsOnClick()
+    {
+        if ((int)_activeMode < 1)
+        {
+            _activeMode++;
+        }
+        else _activeMode = 0;
+
+        switch (_activeMode)
+        {
+            case _modes.unselected:
+                SelectedBorder.SetActive(false);
+                UnselectedBorder.SetActive(true);
+                FeatureSelectedIcon.SetActive(false);
+                EnableEffects();
+                break;
+            case _modes.preset1:
+                SelectedBorder.SetActive(true);
+                UnselectedBorder.SetActive(false);
+                FeatureSelectedIcon.SetActive(true);
+                DisableEffects();
+                break;
+        }
     }
 }

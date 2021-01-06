@@ -25,7 +25,6 @@ public class InvertSpectrumFeature : MonoBehaviour
         int _g = 255 - _convertedRGBColor.g;
         int _b = 255 - _convertedRGBColor.b;
         int _a = 1;
-        Debug.Log(_r + " " + _g + " " + _b + " " + _a);
         Color _convertedFloatColor = new Color32((byte)_r, (byte)_g, (byte)_b, (byte)_a);
         return _convertedFloatColor;
     }
